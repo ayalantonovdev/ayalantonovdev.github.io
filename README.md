@@ -1,3 +1,2 @@
-"# ayalantonovdev.github.io" 
-"# ayalantonovdev.github.io" 
-"# ayalantonovdev.github.io" 
+"Hi there!"
+"this site will be <Retro wave> music content project"
