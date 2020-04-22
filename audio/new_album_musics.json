@@ -3,13 +3,13 @@
     "album_category" : "new",
     "album_name" : "Summer'19",
     "album_artist_name" : "Christian Alexander",
-    "album_img" : "https://ayalantonovdev.github.io/audio/summer19.jpg",
+    "album_img" : "https://ayal-141bd.kxcdn.com/audio/summer19.jpg",
     "album_songs" :
     [
       {
         "id" : "1",
         "song_name" : "Going Thru",
-        "song_url" : "https://ayalantonovdev.github.io/audio/going_thru.mp3",
+        "song_url" : "https://ayal-141bd.kxcdn.com/audio/going_thru.mp3",
         "song_rating" : "42"
       }
     ],
