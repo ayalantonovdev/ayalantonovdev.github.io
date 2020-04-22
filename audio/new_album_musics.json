@@ -1,111 +1,15 @@
 [
   {
     "album_category" : "new",
-    "album_name" : "Hollywood's Bleeding",
-    "album_artist_name" : "Post Malone",
-    "album_img" : "https://cdn41.zvooq.com/pic?type=release&id=9468614&size=500x500&ext=jpg",
+    "album_name" : "Summer'19",
+    "album_artist_name" : "Christian Alexander",
+    "album_img" : "https://ayalantonovdev.github.io/audio/summer19.jpg",
     "album_songs" :
     [
       {
         "id" : "1",
-        "song_name" : "Hollywood's Bleeding",
-        "song_url" : "https://cdn62.zvooq.com/track/stream?id=65328307&code=pO32DLRLA8vQHJ9FIyfXYA&expires=1587522502",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "2",
-        "song_name" : "Saint-Tropez",
-        "song_url" : "https://cdn42.zvooq.com/track/stream?id=65328311&code=Omyn6-tqwqyleTg34eYmkw&expires=1587526906",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "3",
-        "song_name" : "Enemies (Feat. DaBaby)",
-        "song_url" : "https://cdn52.zvooq.com/track/stream?id=65328309&code=_PAZ_BYuz-EmAWN8L5eAGg&expires=1587526946",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "4",
-        "song_name" : "Allergic",
-        "song_url" : "https://cdn52.zvooq.com/track/stream?id=65328300&code=iOaHDuaetst5e5UjWVHiug&expires=1587527000",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "5",
-        "song_name" : "A Thousand Bad Times",
-        "song_url" : "https://cdn61.zvooq.com/track/stream?id=65328301&code=JY8UBZo3QO0nWQFPWRsz9A&expires=1587527030",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "6",
-        "song_name" : "Circles",
-        "song_url" : "https://cdn61.zvooq.com/track/stream?id=65328297&code=otGlGMGfCqgRfHg0wYYQGQ&expires=1587527058",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "7",
-        "song_name" : "Die For Me",
-        "song_url" : "https://cdn61.zvooq.com/track/stream?id=65328313&code=Jl7JT5w9AgNeI7K0xCeIHg&expires=1587527086",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "8",
-        "song_name" : "On The Road",
-        "song_url" : "https://cdn41.zvooq.com/track/stream?id=65328303&code=0wdNpI_JFZrct0EnURr2pg&expires=1587527137",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "9",
-        "song_name" : "Take What You Want",
-        "song_url" : "https://cdn41.zvooq.com/track/stream?id=65328312&code=8wWCExKm8b2y6TQWiOQ6Mg&expires=1587527167",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "10",
-        "song_name" : "I'm Gonna Be",
-        "song_url" : "https://cdn62.zvooq.com/track/stream?id=65328305&code=RgdBsTIQdjld44cfRDzc0w&expires=1587527198",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "11",
-        "song_name" : "Staring At The Sun (Feat. SZA)",
-        "song_url" : "https://cdn52.zvooq.com/track/stream?id=65328304&code=ZYwd8CTyCV-311yhqs044Q&expires=1587527276",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "12",
-        "song_name" : "Sunflower",
-        "song_url" : "https://cdn62.zvooq.com/track/stream?id=65328306&code=tkq19vkFbHa6eUTSS_52vw&expires=1587527326",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "13",
-        "song_name" : "Internet",
-        "song_url" : "https://cdn61.zvooq.com/track/stream?id=65328310&code=jZxnEmRFJE0_NjU3l707wg&expires=1587527393",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "14",
-        "song_name" : "Goodbyes (Feat. Young Thug)",
-        "song_url" : "https://cdn42.zvooq.com/track/stream?id=65328308&code=Z_kgWALCn_gvauIEL1Gf6Q&expires=1587527411",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "15",
-        "song_name" : "Myself",
-        "song_url" : "https://cdn42.zvooq.com/track/stream?id=65328299&code=jty7vz_QPOcVVtShY3mamw&expires=1587527431",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "16",
-        "song_name" : "I Know",
-        "song_url" : "https://cdn42.zvooq.com/track/stream?id=65328302&code=FB3ZtfvaJUjs3Dj-Cdn3JQ&expires=1587527475",
-        "song_rating" : "42"
-      },
-      {
-        "id" : "17",
-        "song_name" : "Wow.",
-        "song_url" : "https://cdn42.zvooq.com/track/stream?id=65328298&code=tX9csVj7V07SiQfGaHc-eA&expires=1587527492",
+        "song_name" : "Going Thru",
+        "song_url" : "https://ayalantonovdev.github.io/audio/going_thru.mp3",
         "song_rating" : "42"
       }
     ],
