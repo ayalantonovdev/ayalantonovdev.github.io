@@ -155,9 +155,9 @@ let app = new Vue({
   },
   mounted() {
     audio.addEventListener("timeupdate", this.updateCurrentTime);
-    dot.addEventListener("touchstart", this.startMove)
-    dot.addEventListener("touchmove", this.doMove)
-    dot.addEventListener("touchend", this.endMove)
+    dot.addEventListener("touchstart", function(e){ this.startMove })
+    dot.addEventListener("touchmove", function(e){ this.doMove })
+    dot.addEventListener("touchend", function(e){ this.endMove })
   },
   beforeCreate() {
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
