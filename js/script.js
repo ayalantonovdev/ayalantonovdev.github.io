@@ -155,12 +155,14 @@ let app = new Vue({
   },
   mounted() {
     audio.addEventListener("timeupdate", this.updateCurrentTime);
-    dot.addEventListener("touchstart", function(e){ this.startMove })
-    dot.addEventListener("touchmove", function(e){ this.doMove })
-    dot.addEventListener("touchend", function(e){ this.endMove })
   },
   beforeCreate() {
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
+  },
+  created() {
+    dot.addEventListener("touchstart", function(e){ this.startMove })
+    dot.addEventListener("touchmove", function(e){ this.doMove })
+    dot.addEventListener("touchend", function(e){ this.endMove })
   },
   updated() {
     this.trackTimeEnd = Math.floor(audio.duration/60) + ":" + Math.floor(audio.duration) % 60
