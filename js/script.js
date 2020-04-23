@@ -10,6 +10,7 @@
 // }; for production
 
 let audio = new Audio()
+let dot = document.getElementById("playeer_dot")
 const trackBox = document.getElementById('playeer-inside-controls-length-tracks')
 let domT = trackBox.getBoundingClientRect()
 const movedTrack = document.getElementById('playeer-inside-controls-length-tracks-move')
@@ -154,7 +155,9 @@ let app = new Vue({
   },
   mounted() {
     audio.addEventListener("timeupdate", this.updateCurrentTime);
-    document.getElementById("playeer_dot").addEventListener("touchstart", this.startMove)
+    dot.addEventListener("touchstart", this.startMove)
+    dot.addEventListener("touchmove", this.doMove)
+    dot.addEventListener("touchend", this.endMove)
   },
   beforeCreate() {
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
