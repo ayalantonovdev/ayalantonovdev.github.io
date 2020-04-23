@@ -67,7 +67,7 @@
             <div class="playeer-inside-controls-length">
               <div v-on:mousedown="startJumpMove" v-on:mousemove="doJumpMove" class="playeer-inside-controls-length-tracks" id="playeer-inside-controls-length-tracks">
                 <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-inside-controls-length-tracks-move">
-                  <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot"></div>
+                  <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot" id="playeer_dot"></div>
                 </div>
                 <div class="playeer-inside-controls-length-tracks-times">
                   <span>{{trackTimeNow}}</span>
