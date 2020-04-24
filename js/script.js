@@ -194,6 +194,7 @@ let app = new Vue({
       {
         this.playeerIsOpened = false
       }
+      this.deltaSlide = 0
       this.isSlidePlayeer = false
       console.log("slideend")
     },
