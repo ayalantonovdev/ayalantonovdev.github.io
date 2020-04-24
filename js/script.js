@@ -10,11 +10,11 @@
 // }; for production
 
 let audio = new Audio()
-let dot = document.getElementById("playeer_dot")
 const trackBox = document.getElementById('playeer-inside-controls-length-tracks')
 let domT = trackBox.getBoundingClientRect()
 const movedTrack = document.getElementById('playeer-inside-controls-length-tracks-move')
 let domMT = movedTrack.getBoundingClientRect()
+
 
 let app = new Vue({
   el: '#app',
@@ -40,7 +40,8 @@ let app = new Vue({
     new_album_musics : 1,
     new_album_item_toggle : true,
     trackTimeNow: "0:00",
-    trackTimeEnd: "0:00"
+    trackTimeEnd: "0:00",
+    isTouch: false
   },
   methods: {
     openClosePlayeer : function(event)
@@ -91,16 +92,29 @@ let app = new Vue({
     {
       if(this.trackMove)
       {
-        this.controlsLength = 100*(event.clientX - domMT.left)/domT.width;
-        if(this.controlsLength > 100)
+        if(event.type == "touchmove")
         {
-          this.controlsLength = 100
+          this.controlsLength = 100*(event.changedTouches[0].clientX - domMT.left)/domT.width;
+          if(this.controlsLength > 100)
+          {
+            this.controlsLength = 100
+          }
+          audio.currentTime = audio.duration * this.controlsLength/100
+        }
+        else
+        {
+          this.controlsLength = 100*(event.clientX - domMT.left)/domT.width;
+          if(this.controlsLength > 100)
+          {
+            this.controlsLength = 100
+          }
         }
       }
     },
     endMove: function(event)
     {
       this.trackMove = false
+      if(event.type == "touchend"){console.log(event.type)}
     },
     startJumpMove: function(event)
     {
@@ -155,6 +169,10 @@ let app = new Vue({
   },
   mounted() {
     audio.addEventListener("timeupdate", this.updateCurrentTime);
+    let dot = document.getElementById('playeer_dot')
+    dot.addEventListener('touchstart', function(e){ app.startMove(e) })
+    dot.addEventListener('touchmove', function(e){ app.doMove(e) })
+    dot.addEventListener('touchend', function(e){ app.endMove(e) })
   },
   beforeCreate() {
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
@@ -162,8 +180,4 @@ let app = new Vue({
   updated() {
     this.trackTimeEnd = Math.floor(audio.duration/60) + ":" + Math.floor(audio.duration) % 60
   }
-  })
-
-  dot.addEventListener("touchstart", function(e){ app.startMove })
-  dot.addEventListener("touchmove", function(e){ app.doMove })
-  dot.addEventListener("touchend", function(e){ app.endMove })
+})
