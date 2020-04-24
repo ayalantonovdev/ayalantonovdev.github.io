@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div id="playeer" v-show="isShowPlayeerContainer" v-bind:class="{ playeer_opened: playeerIsOpened }">
+    <div id="playeer" class="playeer" v-show="isShowPlayeerContainer" v-bind:class="{ playeer_opened: playeerIsOpened }">
       <div class="playeer-container">
         <div v-on:click="openClosePlayeer" class="playeer-img">
           <img :src="playeed_img" alt="">
@@ -60,7 +60,7 @@
           <div class="playeer-inside-header">
             <div v-on:click="openClosePlayeer" id="playeer-inside-header-close"></div>
           </div>
-          <div class="playeer-inside-img">
+          <div class="playeer-inside-img" id="playeer-slide-down">
             <img :src="playeed_img" alt="">
           </div>
           <div class="playeer-inside-controls">

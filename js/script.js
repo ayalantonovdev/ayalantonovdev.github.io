@@ -42,7 +42,10 @@ let app = new Vue({
     new_album_item_toggle : true,
     trackTimeNow: "0:00",
     trackTimeEnd: "0:00",
-    isTouch: false
+    isSlidePlayeer: false,
+    deltaSlide: 0,
+    slideY1: 0,
+    slideY2: 0
   },
   methods: {
     openClosePlayeer : function(event)
@@ -172,6 +175,28 @@ let app = new Vue({
       this.isShowPlayeerContainer = true
       this.playeed_img = img
     },
+    slideStart: function(e)
+    {
+      this.isSlidePlayeer = true
+      this.slideY1 = event.changedTouches[0].clientY
+      console.log("slidestart")
+    },
+    slideMove: function(e)
+    {
+      if(this.isSlidePlayeer)
+      {
+        this.deltaSlide = event.changedTouches[0].clientY - this.slideY1
+      }
+    },
+    slideEnd: function(e)
+    {
+      if(this.deltaSlide > 50)
+      {
+        this.playeerIsOpened = false
+      }
+      this.isSlidePlayeer = false
+      console.log("slideend")
+    },
     resize_window: function(e)
     {
       deltaWidth = window.innerWidth - firstWidth
@@ -183,6 +208,10 @@ let app = new Vue({
   mounted() {
     audio.addEventListener("timeupdate", this.updateCurrentTime);
     let dot = document.getElementById('playeer_dot')
+    let slideDown = document.getElementById('playeer-slide-down')
+    slideDown.addEventListener('touchstart', function(e){ app.slideStart(e) })
+    slideDown.addEventListener('touchmove', function(e){ app.slideMove(e) })
+    slideDown.addEventListener('touchend', function(e){ app.slideEnd(e) })
     dot.addEventListener('touchstart', function(e){ app.startMove(e) })
     dot.addEventListener('touchmove', function(e){ app.doMove(e) })
     dot.addEventListener('touchend', function(e){ app.endMove(e) })
