@@ -95,7 +95,7 @@ let app = new Vue({
       {
         if(event.type == "touchmove")
         {
-          this.controlsLength = 100*(Math.floor(event.changedTouches[0].clientX) - domMT.left)/domT.width
+          this.controlsLength = 100*(Math.floor(event.changedTouches[0].clientX) - domMT.left - deltaWidth/2)/domT.width
           this.isTrackMoved = true
           if(this.controlsLength > 100)
           {
@@ -104,7 +104,7 @@ let app = new Vue({
         }
         else
         {
-          this.controlsLength = 100*(event.clientX - domMT.left)/domT.width
+          this.controlsLength = 100*(event.clientX - domMT.left - deltaWidth/2)/domT.width
           this.isTrackMoved = true
           if(this.controlsLength > 100)
           {
