@@ -53,7 +53,7 @@ header
   position: absolute;
   left: 0px;
   margin: 0 10px;
-  transition: left 200ms ease-out
+  transition: left 400ms ease-out
 }
 .right_side_move_left
 {
@@ -227,7 +227,7 @@ header
   height: 50px;
   background-color: #3e3b3b;
   z-index: 999;
-  transition: bottom 150ms ease-out
+  transition: bottom 450ms cubic-bezier(0.67, -0.24, 0.41, 1.1);
 }
 .playeer_opened
 {
@@ -282,7 +282,7 @@ header
 .playeer-inside
 {
   background-color: #3e3b3b;
-  height: 100vh;
+  height: 110vh;
 }
 .playeer-inside-container
 {
@@ -492,7 +492,7 @@ header
   display: flex;
   padding: 15px 10px;
   margin: 5px;
-  transition: background 150ms ease-out;
+  transition: background 300ms ease-out;
   border-radius: 5px;
   cursor: pointer;
 }
