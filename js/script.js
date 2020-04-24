@@ -14,8 +14,8 @@ const trackBox = document.getElementById('playeer-inside-controls-length-tracks'
 let domT = trackBox.getBoundingClientRect()
 const movedTrack = document.getElementById('playeer-inside-controls-length-tracks-move')
 let domMT = movedTrack.getBoundingClientRect()
-
-
+const firstWidth = window.innerWidth
+let deltaWidth = 0
 let app = new Vue({
   el: '#app',
   data: {
@@ -37,6 +37,7 @@ let app = new Vue({
     playeed_list: 'none',
     playeed_list_length: 'none',
     trackPlayed: false,
+    isTrackMoved: false,
     new_album_musics : 1,
     new_album_item_toggle : true,
     trackTimeNow: "0:00",
@@ -94,16 +95,17 @@ let app = new Vue({
       {
         if(event.type == "touchmove")
         {
-          this.controlsLength = 100*(Math.floor(event.changedTouches[0].clientX) - domMT.left)/domT.width;
+          this.controlsLength = 100*(Math.floor(event.changedTouches[0].clientX) - domMT.left)/domT.width
+          this.isTrackMoved = true
           if(this.controlsLength > 100)
           {
             this.controlsLength = 100
           }
-          audio.currentTime = audio.duration * this.controlsLength/100
         }
         else
         {
-          this.controlsLength = 100*(event.clientX - domMT.left)/domT.width;
+          this.controlsLength = 100*(event.clientX - domMT.left)/domT.width
+          this.isTrackMoved = true
           if(this.controlsLength > 100)
           {
             this.controlsLength = 100
@@ -114,19 +116,22 @@ let app = new Vue({
     endMove: function(event)
     {
       this.trackMove = false
+      if(this.isTrackMoved)
+      {
+        audio.currentTime = audio.duration * this.controlsLength/100
+        this.isTrackMoved = false
+      }
       if(event.type == "touchend"){console.log(event.type)}
     },
     startJumpMove: function(event)
     {
       this.trackMove = true
-      this.controlsLength = 100*(event.clientX - domMT.left)/domT.width
-      audio.currentTime = audio.duration * this.controlsLength/100
     },
     doJumpMove: function(event)
     {
       if(this.trackMove)
       {
-      this.controlsLength = 100*(event.clientX - domMT.left)/domT.width;
+      this.controlsLength = 100*(event.clientX - (domMT.left + deltaWidth))/(domT.width + deltaWidth)
       audio.currentTime = audio.duration * this.controlsLength/100
       }
     },
@@ -140,7 +145,10 @@ let app = new Vue({
       {
         this.trackTimeNow = Math.floor(audio.currentTime/60) + ":" + Math.floor(audio.currentTime) % 60
       }
+      if(!this.trackMove)
+      {
       this.controlsLength = Math.floor(audio.currentTime) * 100/audio.duration
+      }
       if(audio.currentTime == audio.duration)
       {
         this.nextSong()
@@ -163,6 +171,11 @@ let app = new Vue({
       this.trackTimeEnd = "0:00"
       this.isShowPlayeerContainer = true
       this.playeed_img = img
+    },
+    resize_window: function(e)
+    {
+      deltaWidth = window.innerWidth - firstWidth
+      console.log(domMT.left)
     }
   },
   computed: {
@@ -173,6 +186,7 @@ let app = new Vue({
     dot.addEventListener('touchstart', function(e){ app.startMove(e) })
     dot.addEventListener('touchmove', function(e){ app.doMove(e) })
     dot.addEventListener('touchend', function(e){ app.endMove(e) })
+    window.addEventListener('resize', function(e){ app.resize_window(e)})
   },
   beforeCreate() {
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
