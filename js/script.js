@@ -94,7 +94,7 @@ let app = new Vue({
       {
         if(event.type == "touchmove")
         {
-          this.controlsLength = 100*(event.changedTouches[0].clientX - domMT.left)/domT.width;
+          this.controlsLength = 100*(Math.floor(event.changedTouches[0].clientX) - domMT.left)/domT.width;
           if(this.controlsLength > 100)
           {
             this.controlsLength = 100
