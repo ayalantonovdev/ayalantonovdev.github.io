@@ -131,7 +131,7 @@ let app = new Vue({
     {
       if(this.trackMove)
       {
-      this.controlsLength = 100*(event.clientX - (domMT.left + deltaWidth))/(domT.width + deltaWidth)
+      this.controlsLength = 100*(event.clientX - domMT.left - deltaWidth/2)/domT.width
       audio.currentTime = audio.duration * this.controlsLength/100
       }
     },
