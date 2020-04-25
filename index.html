@@ -90,6 +90,13 @@
               <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next"></div>
               <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle"></div>
             </div>
+            <div class="playeer-inside-controls-volume">
+              <div class="playeer-inside-controls-volume-tracks">
+                <div class="playeer-inside-controls-volume-tracks-wrap">
+                  <input type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

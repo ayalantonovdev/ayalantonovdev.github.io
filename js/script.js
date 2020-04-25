@@ -27,6 +27,7 @@ let app = new Vue({
     albumReview_songs: 'none',
     isShowPlayeerContainer: false,
     controlsLength: 0,
+    playeer_volume: 30,
     trackMove: false,
     playeed_name: 'none',
     playeed_artist: 'none',
@@ -114,6 +115,28 @@ let app = new Vue({
             this.controlsLength = 100
           }
         }
+        if(Math.floor(audio.duration * this.controlsLength/100) % 60 < 10)
+        {
+          if(this.controlsLength <= 0)
+          {
+            this.trackTimeNow = '0:00'
+          }
+          else
+          {
+            this.trackTimeNow = Math.floor(audio.duration * this.controlsLength/100/60) + ":0" + Math.floor(audio.duration * this.controlsLength/100) % 60
+          }
+        }
+        else
+        {
+          if(this.controlsLength <= 0)
+          {
+            this.trackTimeNow = '0:00'
+          }
+          else
+          {
+            this.trackTimeNow = Math.floor(audio.duration * this.controlsLength/100/60) + ":" + Math.floor(audio.duration * this.controlsLength/100) % 60
+          }
+        }
       }
     },
     endMove: function(event)
@@ -140,6 +163,8 @@ let app = new Vue({
     },
     updateCurrentTime: function(event)
     {
+      if(!this.trackMove)
+      {
       if(Math.floor(audio.currentTime) % 60 < 10)
       {
         this.trackTimeNow = Math.floor(audio.currentTime/60) + ":0" + Math.floor(audio.currentTime) % 60
@@ -155,6 +180,7 @@ let app = new Vue({
       if(audio.currentTime == audio.duration)
       {
         this.nextSong()
+      }
       }
     },
     change_music: function(url,name,artist,id,img)
