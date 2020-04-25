@@ -270,8 +270,16 @@ header
 {
   width: 40px;
   height: 40px;
-  background-color: #555;
+  font-size: 40px;
   margin: 0 5px;
+}
+.playeer-play i
+{
+  cursor: pointer;
+}
+.playeer-play i:active
+{
+  color: #777
 }
 #playeer-length
 {
@@ -302,7 +310,17 @@ header
 {
   width: 30px;
   height: 30px;
-  background-color: #df4;
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+}
+#playeer-inside-header-close i
+{
+  cursor: pointer;
+}
+#playeer-inside-header-close i:active
+{
+  color: #777
 }
 .playeer-inside-img
 {
@@ -388,39 +406,23 @@ header
   display: flex;
   justify-content: space-between;
 }
-#playeer-inside-controls-buttons-pre
+.playeer-inside-controls-buttons-btn
 {
   width: 20px;
   height: 20px;
-  background-color: #1c9da0;
+  margin: 0 15px;
+  font-size: 20px;
+  color: #fff;
 }
-#playeer-inside-controls-buttons-play
+.playeer-inside-controls-buttons-btn i
 {
-  width: 20px;
-  height: 20px;
-  background-color: #1c9da0;
+  cursor: pointer;
 }
-
-#playeer-inside-controls-buttons-next
+.playeer-inside-controls-buttons-btn i:active
 {
-  width: 20px;
-  height: 20px;
-  background-color: #1c9da0;
+  color: #777;
 }
 
-#playeer-inside-controls-buttons-repeats
-{
-  width: 20px;
-  height: 20px;
-  background-color: #1c9da0;
-}
-
-#playeer-inside-controls-buttons-shuffle
-{
-  width: 20px;
-  height: 20px;
-  background-color: #1c9da0;
-}
 #album_review
 {
   position: fixed;

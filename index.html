@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>retro WAVE</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fonts/css/fontawesome.min.css">
+  <link rel="stylesheet" href="fonts/css/solid.min.css">
+  <link rel="stylesheet" href="fonts/css/regular.min.css">
 </head>
 <body>
   <script src="js/vue.js"></script>
@@ -52,13 +55,16 @@
           </div>
         </div>
         <div v-on:click="playSong" id="playeer-play" class="playeer-play">
+          <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
         </div>
         <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-length"></div>
       </div>
       <div v-on:mousemove="doMove" v-on:mouseup="endMove" class="playeer-inside" id="playeer_inside">
         <div class="playeer-inside-container">
           <div class="playeer-inside-header">
-            <div v-on:click="openClosePlayeer" id="playeer-inside-header-close"></div>
+            <div v-on:click="openClosePlayeer" id="playeer-inside-header-close">
+              <i class="far fa-angle-down"></i>
+            </div>
           </div>
           <div class="playeer-inside-img" id="playeer-slide-down">
             <img :src="playeed_img" alt="">
@@ -84,11 +90,21 @@
               </div>
             </div>
             <div class="playeer-inside-controls-buttons">
-              <div v-on:click="playeed_repeat = !playeed_repeat" id="playeer-inside-controls-buttons-repeats"></div>
-              <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre"></div>
-              <div v-on:click="playSong" id="playeer-inside-controls-buttons-play"></div>
-              <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next"></div>
-              <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle"></div>
+              <div v-on:click="playeed_repeat = !playeed_repeat" id="playeer-inside-controls-buttons-repeats" class="playeer-inside-controls-buttons-btn">
+                <i class="far fa-repeat"></i>
+              </div>
+              <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre" class="playeer-inside-controls-buttons-btn">
+                <i class="fas fa-backward"></i>
+              </div>
+              <div v-on:click="playSong" id="playeer-inside-controls-buttons-play" class="playeer-inside-controls-buttons-btn">
+                <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
+              </div>
+              <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next" class="playeer-inside-controls-buttons-btn">
+                <i class="fas fa-forward"></i>
+              </div>
+              <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle" class="playeer-inside-controls-buttons-btn">
+                <i class="far fa-random"></i>
+              </div>
             </div>
             <div class="playeer-inside-controls-volume">
               <div class="playeer-inside-controls-volume-tracks">
