@@ -160,8 +160,9 @@ header
   margin: 15px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.albums-name span
+.albums-name-album
 {
   font-size: 24px;
   font-weight: 900;
@@ -169,6 +170,9 @@ header
 .albums-name-more
 {
   cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  color: #777;
 }
 .albums-grid
 {
@@ -264,17 +268,25 @@ header
 }
 .playeer-names-name
 {
-  font-weight: 700;
+  font-weight: 400;
+}
+.playeer-names-artist
+{
+  font-weight: 400;
+  color: #a6a6a6
 }
 .playeer-play
 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
-  font-size: 40px;
   margin: 0 5px;
 }
 .playeer-play i
 {
+  font-size: 20px;
   cursor: pointer;
 }
 .playeer-play i:active
@@ -293,14 +305,21 @@ header
 .playeer-inside
 {
   background-color: #202020;
-  height: 110vh;
+  height: 100vh;
 }
 .playeer-inside-container
 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 640px;
   height: 100%;
+  padding: 0 30px;
   margin: 0 auto;
-  padding: 15px;
+}
+.playeer-inside-container-wrap
+{
+  width: 100%
 }
 .playeer-inside-header
 {
@@ -354,7 +373,7 @@ header
   height: 100%;
   width: 55%;
   border-radius: 150px;
-  background-color: #F4D;
+  background-color: #F00;
   position: relative;
 }
 .playeer-inside-controls-length-tracks-move-dot
@@ -366,7 +385,7 @@ header
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #F4D;
+  background-color: #F00;
   border: 3px solid #202020;
   transition: all 100ms ease-out;
 }
@@ -551,8 +570,19 @@ input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-up
 {
   height: 100%;
   width: 50px;
-  background-color: #742;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.album_review-header-back i
+{
+  color: #fff;
+  font-size: 20px;
   cursor: pointer;
+}
+.album_review-header-back i:active
+{
+  color: #777;
 }
 .album_review-header-name span
 {
@@ -563,7 +593,6 @@ input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-up
 {
   height: 100%;
   width: 50px;
-  background-color: #524;
 }
 .album_review-info
 {
@@ -672,10 +701,13 @@ input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-up
 }
 .playeer-inside-container
 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 640px;
   height: 100%;
+  padding: 0 30px;
   margin: 0 auto;
-  padding: 80px 15px;
 }
 .album_item_toggle:nth-child(n + 5)
 {

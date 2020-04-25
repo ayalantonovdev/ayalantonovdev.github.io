@@ -22,7 +22,7 @@
       <div id="albums">
         <div id="albums-container">
           <div class="albums-name">
-            <span>New albums</span>
+            <span class="albums-name-album">New albums</span>
             <span v-on:click="new_album_item_toggle = !new_album_item_toggle" class="albums-name-more">more...</span>
           </div>
           <div class="albums-grid">
@@ -61,55 +61,57 @@
       </div>
       <div v-on:mousemove="doMove" v-on:mouseup="endMove" class="playeer-inside" id="playeer_inside">
         <div class="playeer-inside-container">
-          <div class="playeer-inside-header">
-            <div v-on:click="openClosePlayeer" id="playeer-inside-header-close">
-              <i class="far fa-angle-down"></i>
+          <div class="playeer-inside-container-wrap">
+            <div class="playeer-inside-header">
+              <div v-on:click="openClosePlayeer" id="playeer-inside-header-close">
+                <i class="far fa-angle-down"></i>
+              </div>
             </div>
-          </div>
-          <div class="playeer-inside-img" id="playeer-slide-down">
-            <img :src="playeed_img" alt="">
-          </div>
-          <div class="playeer-inside-controls">
-            <div class="playeer-inside-controls-length">
-              <div v-on:mousedown="startJumpMove" v-on:mouseup="doJumpMove" class="playeer-inside-controls-length-tracks" id="playeer-inside-controls-length-tracks">
-                <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-inside-controls-length-tracks-move">
-                  <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot" id="playeer_dot"></div>
+            <div class="playeer-inside-img" id="playeer-slide-down">
+              <img :src="playeed_img" alt="">
+            </div>
+            <div class="playeer-inside-controls">
+              <div class="playeer-inside-controls-length">
+                <div v-on:mousedown="startJumpMove" v-on:mouseup="doJumpMove" class="playeer-inside-controls-length-tracks" id="playeer-inside-controls-length-tracks">
+                  <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-inside-controls-length-tracks-move">
+                    <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot" id="playeer_dot"></div>
+                  </div>
+                  <div class="playeer-inside-controls-length-tracks-times">
+                    <span>{{trackTimeNow}}</span>
+                    <span>{{trackTimeEnd}}</span>
+                  </div>
                 </div>
-                <div class="playeer-inside-controls-length-tracks-times">
-                  <span>{{trackTimeNow}}</span>
-                  <span>{{trackTimeEnd}}</span>
+              </div>
+              <div class="playeer-inside-controls-names">
+                <div class="playeer-inside-controls-names-name">
+                  <span>{{playeed_name}}</span>
+                </div>
+                <div class="playeer-inside-controls-names-artist">
+                  <span>{{playeed_artist}}</span>
                 </div>
               </div>
-            </div>
-            <div class="playeer-inside-controls-names">
-              <div class="playeer-inside-controls-names-name">
-                <span>{{playeed_name}}</span>
+              <div class="playeer-inside-controls-buttons">
+                <div v-on:click="playeed_repeat = !playeed_repeat" id="playeer-inside-controls-buttons-repeats" class="playeer-inside-controls-buttons-btn">
+                  <i class="far fa-repeat"></i>
+                </div>
+                <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre" class="playeer-inside-controls-buttons-btn">
+                  <i class="fas fa-backward"></i>
+                </div>
+                <div v-on:click="playSong" id="playeer-inside-controls-buttons-play" class="playeer-inside-controls-buttons-btn">
+                  <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
+                </div>
+                <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next" class="playeer-inside-controls-buttons-btn">
+                  <i class="fas fa-forward"></i>
+                </div>
+                <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle" class="playeer-inside-controls-buttons-btn">
+                  <i class="far fa-random"></i>
+                </div>
               </div>
-              <div class="playeer-inside-controls-names-artist">
-                <span>{{playeed_artist}}</span>
-              </div>
-            </div>
-            <div class="playeer-inside-controls-buttons">
-              <div v-on:click="playeed_repeat = !playeed_repeat" id="playeer-inside-controls-buttons-repeats" class="playeer-inside-controls-buttons-btn">
-                <i class="far fa-repeat"></i>
-              </div>
-              <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre" class="playeer-inside-controls-buttons-btn">
-                <i class="fas fa-backward"></i>
-              </div>
-              <div v-on:click="playSong" id="playeer-inside-controls-buttons-play" class="playeer-inside-controls-buttons-btn">
-                <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
-              </div>
-              <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next" class="playeer-inside-controls-buttons-btn">
-                <i class="fas fa-forward"></i>
-              </div>
-              <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle" class="playeer-inside-controls-buttons-btn">
-                <i class="far fa-random"></i>
-              </div>
-            </div>
-            <div class="playeer-inside-controls-volume">
-              <div class="playeer-inside-controls-volume-tracks">
-                <div class="playeer-inside-controls-volume-tracks-wrap">
-                  <input type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
+              <div class="playeer-inside-controls-volume">
+                <div class="playeer-inside-controls-volume-tracks">
+                  <div class="playeer-inside-controls-volume-tracks-wrap">
+                    <input type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
+                  </div>
                 </div>
               </div>
             </div>
@@ -119,7 +121,9 @@
     </div>
     <div id="album_review" v-bind:class="{ album_review_opened: albumReviewIsOpened }">
       <div class="album_review-header">
-        <div v-on:click="albumReviewIsOpened = !albumReviewIsOpened" class="album_review-header-back"></div>
+        <div v-on:click="albumReviewIsOpened = !albumReviewIsOpened" class="album_review-header-back">
+          <i class="far fa-long-arrow-left"></i>
+        </div>
         <div class="album_review-header-name">
           <span>Альбом</span>
         </div>
