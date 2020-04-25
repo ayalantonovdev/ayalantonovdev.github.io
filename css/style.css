@@ -709,6 +709,10 @@ input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-up
   padding: 0 30px;
   margin: 0 auto;
 }
+.playeer-inside-header
+{
+  margin-top: 15px;
+}
 .album_item_toggle:nth-child(n + 5)
 {
   display: inline-block;
