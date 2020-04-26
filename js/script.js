@@ -27,7 +27,7 @@ let app = new Vue({
     albumReview_songs: 'none',
     isShowPlayeerContainer: false,
     controlsLength: 0,
-    playeer_volume: 30,
+    playeer_volume: 70,
     trackMove: false,
     playeed_name: 'none',
     playeed_artist: 'none',
@@ -228,6 +228,10 @@ let app = new Vue({
     {
       deltaWidth = window.innerWidth - firstWidth
       console.log(domMT.left)
+    },
+    change_volume: function(e)
+    {
+      audio.volume = this.playeer_volume/100
     }
   },
   computed: {

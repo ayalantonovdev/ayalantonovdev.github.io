@@ -109,9 +109,12 @@
               </div>
               <div class="playeer-inside-controls-volume">
                 <div class="playeer-inside-controls-volume-tracks">
+                  <i class="fas fa-volume-off"></i>
                   <div class="playeer-inside-controls-volume-tracks-wrap">
-                    <input type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
+                    <div v-bind:style="{width : playeer_volume + '%'}" class="playeer-inside-controls-volume-tracks-wrap-changed"></div>
+                    <input v-model="playeer_volume" v-on:input="change_volume" type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
                   </div>
+                  <i class="fas fa-volume-up"></i>
                 </div>
               </div>
             </div>

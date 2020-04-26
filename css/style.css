@@ -457,10 +457,26 @@ header
 {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.playeer-inside-controls-volume-tracks i
+{
+  color: #777;
+  font-size: 12px;
+  margin: 0 15px;
 }
 .playeer-inside-controls-volume-tracks-wrap
 {
-  width: 80%
+  width: 80%;
+  position: relative;
+}
+.playeer-inside-controls-volume-tracks-wrap-changed
+{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  height: 3px;
+  background-color: #fff;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input {
   -webkit-appearance: none;
@@ -475,7 +491,7 @@ input[type=range].playeer-inside-controls-volume-tracks-input::-webkit-slider-ru
   height: 3px;
   cursor: pointer;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-  background: #ffffff;
+  background: #777;
   border-radius: 0px;
   border: 0px solid #010101;
 }
@@ -491,7 +507,7 @@ input[type=range].playeer-inside-controls-volume-tracks-input::-webkit-slider-th
   margin-top: -8.5px;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input:focus::-webkit-slider-runnable-track {
-  background: #ffffff;
+  background: #777;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input::-moz-range-progress {
   background: red;
@@ -501,7 +517,7 @@ input[type=range].playeer-inside-controls-volume-tracks-input::-moz-range-track 
   height: 3px;
   cursor: pointer;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-  background: #ffffff;
+  background: #777;
   border-radius: 0px;
   border: 0px solid #010101;
 }
@@ -523,13 +539,13 @@ input[type=range].playeer-inside-controls-volume-tracks-input::-ms-track {
   color: transparent;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input::-ms-fill-lower {
-  background: #ffffff;
+  background: #777;
   border: 0px solid #010101;
   border-radius: 0px;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
 }
 input[type=range].playeer-inside-controls-volume-tracks-input::-ms-fill-upper {
-  background: #ffffff;
+  background: #777;
   border: 0px solid #010101;
   border-radius: 0px;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
@@ -545,10 +561,10 @@ input[type=range].playeer-inside-controls-volume-tracks-input::-ms-thumb {
   height: 3px;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-lower {
-  background: #ffffff;
+  background: #777;
 }
 input[type=range].playeer-inside-controls-volume-tracks-input:focus::-ms-fill-upper {
-  background: #ffffff;
+  background: #777;
 }
 
 
