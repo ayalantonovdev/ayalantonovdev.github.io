@@ -192,6 +192,7 @@ let app = new Vue({
       this.playeed_artist = artist
       this.playeed_list = this.albumReview_songs
       audio = new Audio(url)
+      audio.volume = this.playeer_volume/100
       audio.addEventListener("timeupdate", this.updateCurrentTime)
       audio.play()
       this.trackPlayed = true
