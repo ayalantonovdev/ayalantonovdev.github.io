@@ -33,7 +33,7 @@ let app = new Vue({
     playeed_artist: 'none',
     playeed_img: 'none',
     playeed_id: 'none',
-    playeed_repeat: false,
+    playeed_repeat: 'none',
     playeed_shuffle: false,
     playeed_list: 'none',
     playeed_list_length: 'none',
@@ -67,14 +67,33 @@ let app = new Vue({
     },
     nextSong: function()
     {
-      if(this.playeed_list_length > this.playeed_id)
-      {
-        let newSong = this.playeed_list[this.playeed_id]
-        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img)
-      }
-      else {
-        let newSong = this.playeed_list[0]
-        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img)
+      switch (this.playeed_repeat) {
+        case 'none':
+        if(this.playeed_list_length > this.playeed_id)
+        {
+          let newSong = this.playeed_list[this.playeed_id]
+          this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
+        }
+        else {
+          let newSong = this.playeed_list[0]
+          this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,false)
+        }
+        break;
+        case 'album':
+        if(this.playeed_list_length > this.playeed_id)
+        {
+          let newSong = this.playeed_list[this.playeed_id]
+          this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
+        }
+        else {
+          let newSong = this.playeed_list[0]
+          this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
+        }
+        break;
+        case 'track':
+          let newSong = this.playeed_list[this.playeed_id - 1]
+          this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
+        break;
       }
     },
     preSong: function()
@@ -82,11 +101,11 @@ let app = new Vue({
       if(this.playeed_id == 1)
       {
         let newSong = this.playeed_list[this.playeed_list_length - 1]
-        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img)
+        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
       }
       else {
         let newSong = this.playeed_list[this.playeed_id - 2]
-        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img)
+        this.change_music(newSong.song_url,newSong.song_name,this.albumReview_artist_name,newSong.id,this.albumReview_img,true)
       }
     },
     startMove: function(event)
@@ -182,8 +201,16 @@ let app = new Vue({
         this.nextSong()
       }
       }
+      if(Math.floor(audio.duration - audio.currentTime) % 60 < 10)
+      {
+        this.trackTimeEnd = "- " + Math.floor((audio.duration - audio.currentTime)/60) + ":0" + Math.floor(audio.duration - audio.currentTime) % 60
+      }
+      else
+      {
+        this.trackTimeEnd = "- " + Math.floor((audio.duration - audio.currentTime)/60) + ":" + Math.floor(audio.duration - audio.currentTime) % 60
+      }
     },
-    change_music: function(url,name,artist,id,img)
+    change_music: function(url,name,artist,id,img,play)
     {
       audio.pause()
       audio.currentTime = 0
@@ -194,8 +221,11 @@ let app = new Vue({
       audio = new Audio(url)
       audio.volume = this.playeer_volume/100
       audio.addEventListener("timeupdate", this.updateCurrentTime)
-      audio.play()
-      this.trackPlayed = true
+      if(play)
+      {
+        audio.play()
+      }
+      this.trackPlayed = play
       this.playeed_id = id
       this.playeed_list_length = this.playeed_list.length
       this.trackTimeEnd = "0:00"
@@ -233,6 +263,21 @@ let app = new Vue({
     change_volume: function(e)
     {
       audio.volume = this.playeer_volume/100
+    },
+    change_repeat: function(e)
+    {
+      switch (this.playeed_repeat) {
+        case 'none':
+          this.playeed_repeat = 'album'
+        break;
+        case 'album':
+          this.playeed_repeat = 'track'
+        break;
+        case 'track':
+          this.playeed_repeat = 'none'
+        break;
+      }
+      console.log(this.playeed_repeat)
     }
   },
   computed: {
@@ -253,6 +298,6 @@ let app = new Vue({
     fetch("./audio/new_album_musics.json").then(response => response.json()).then(json => app.new_album_musics = json)
   },
   updated() {
-    this.trackTimeEnd = Math.floor(audio.duration/60) + ":" + Math.floor(audio.duration) % 60
+    // this.trackTimeEnd = Math.floor(audio.duration/60) + ":" + Math.floor(audio.duration) % 60
   }
 })

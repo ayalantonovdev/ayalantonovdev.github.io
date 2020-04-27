@@ -14,7 +14,7 @@
   <script src="js/vue.js"></script>
   <header>
     <div class="logo">
-      <!-- место для img лого -->
+      <span>Playeer demo</span>
     </div>
   </header>
   <div id="app">
@@ -66,58 +66,64 @@
               <div v-on:click="openClosePlayeer" id="playeer-inside-header-close">
                 <i class="far fa-angle-down"></i>
               </div>
-            </div>
-            <div class="playeer-inside-img" id="playeer-slide-down">
-              <img :src="playeed_img" alt="">
-            </div>
-            <div class="playeer-inside-controls">
-              <div class="playeer-inside-controls-length">
-                <div v-on:mousedown="startJumpMove" v-on:mouseup="doJumpMove" class="playeer-inside-controls-length-tracks" id="playeer-inside-controls-length-tracks">
-                  <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-inside-controls-length-tracks-move">
-                    <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot" id="playeer_dot"></div>
-                  </div>
-                  <div class="playeer-inside-controls-length-tracks-times">
-                    <span>{{trackTimeNow}}</span>
-                    <span>{{trackTimeEnd}}</span>
-                  </div>
-                </div>
+              <div class="playeer-inside-header-center">
+                <span>Now playing</span>
               </div>
-              <div class="playeer-inside-controls-names">
-                <div class="playeer-inside-controls-names-name">
-                  <span>{{playeed_name}}</span>
-                </div>
-                <div class="playeer-inside-controls-names-artist">
-                  <span>{{playeed_artist}}</span>
-                </div>
-              </div>
-              <div class="playeer-inside-controls-buttons">
-                <div v-on:click="playeed_repeat = !playeed_repeat" id="playeer-inside-controls-buttons-repeats" class="playeer-inside-controls-buttons-btn">
-                  <i class="far fa-repeat"></i>
-                </div>
-                <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre" class="playeer-inside-controls-buttons-btn">
-                  <i class="fas fa-backward"></i>
-                </div>
-                <div v-on:click="playSong" id="playeer-inside-controls-buttons-play" class="playeer-inside-controls-buttons-btn">
-                  <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
-                </div>
-                <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next" class="playeer-inside-controls-buttons-btn">
-                  <i class="fas fa-forward"></i>
-                </div>
-                <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle" class="playeer-inside-controls-buttons-btn">
-                  <i class="far fa-random"></i>
-                </div>
-              </div>
-              <div class="playeer-inside-controls-volume">
-                <div class="playeer-inside-controls-volume-tracks">
-                  <i class="fas fa-volume-off"></i>
-                  <div class="playeer-inside-controls-volume-tracks-wrap">
-                    <div v-bind:style="{width : playeer_volume + '%'}" class="playeer-inside-controls-volume-tracks-wrap-changed"></div>
-                    <input v-model="playeer_volume" v-on:input="change_volume" type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
-                  </div>
-                  <i class="fas fa-volume-up"></i>
-                </div>
+              <div id="playeer-inside-header-right">
+                <i class="far fa-ellipsis-v"></i>
               </div>
             </div>
+                <div class="playeer-inside-img" id="playeer-slide-down">
+                  <img :src="playeed_img" alt="">
+                </div>
+                <div class="playeer-inside-controls">
+                  <div class="playeer-inside-controls-length">
+                    <div v-on:mousedown="startJumpMove" v-on:mouseup="doJumpMove" class="playeer-inside-controls-length-tracks" id="playeer-inside-controls-length-tracks">
+                      <div v-bind:style="{ width: controlsLength + '%'}" id="playeer-inside-controls-length-tracks-move">
+                        <div v-on:mousedown="startMove" v-bind:class="{dot_active : trackMove}" class="playeer-inside-controls-length-tracks-move-dot" id="playeer_dot"></div>
+                      </div>
+                      <div class="playeer-inside-controls-length-tracks-times">
+                        <span>{{trackTimeNow}}</span>
+                        <span>{{trackTimeEnd}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="playeer-inside-controls-names">
+                    <div class="playeer-inside-controls-names-name">
+                      <span>{{playeed_name}}</span>
+                    </div>
+                    <div class="playeer-inside-controls-names-artist">
+                      <span>{{playeed_artist}}</span>
+                    </div>
+                  </div>
+                  <div class="playeer-inside-controls-buttons">
+                    <div v-on:click="change_repeat" id="playeer-inside-controls-buttons-repeats" class="playeer-inside-controls-buttons-btn">
+                      <i v-bind:class="{'fa-repeat-1' : playeed_repeat == 'track', 'repeat-active' : playeed_repeat != 'none', 'fa-repeat' : playeed_repeat == 'album'}" class="far fa-repeat"></i>
+                    </div>
+                    <div v-on:click="preSong" id="playeer-inside-controls-buttons-pre" class="playeer-inside-controls-buttons-btn">
+                      <i class="fas fa-backward"></i>
+                    </div>
+                    <div v-on:click="playSong" id="playeer-inside-controls-buttons-play" class="playeer-inside-controls-buttons-btn">
+                      <i v-bind:class="{'fa-pause' : trackPlayed,'fa-play' : !trackPlayed}" class="fas"></i>
+                    </div>
+                    <div v-on:click="nextSong" id="playeer-inside-controls-buttons-next" class="playeer-inside-controls-buttons-btn">
+                      <i class="fas fa-forward"></i>
+                    </div>
+                    <div v-on:click="playeed_shuffle = !playeed_shuffle" id="playeer-inside-controls-buttons-shuffle" class="playeer-inside-controls-buttons-btn">
+                      <i class="far fa-random"></i>
+                    </div>
+                  </div>
+                  <!-- <div class="playeer-inside-controls-volume">
+                    <div class="playeer-inside-controls-volume-tracks">
+                      <i class="fas fa-volume-off"></i>
+                      <div class="playeer-inside-controls-volume-tracks-wrap">
+                        <div v-bind:style="{width : playeer_volume + '%'}" class="playeer-inside-controls-volume-tracks-wrap-changed"></div>
+                        <input v-model="playeer_volume" v-on:input="change_volume" type="range" min="0" max="100" id="playeer-inside-controls-volume-tracks-input" class="playeer-inside-controls-volume-tracks-input">
+                      </div>
+                      <i class="fas fa-volume-up"></i>
+                    </div>
+                  </div> -->
+                </div>
           </div>
         </div>
       </div>
@@ -128,7 +134,7 @@
           <i class="far fa-long-arrow-left"></i>
         </div>
         <div class="album_review-header-name">
-          <span>Альбом</span>
+          <span>Album</span>
         </div>
         <div class="album_review-header-dots"></div>
       </div>
@@ -146,7 +152,7 @@
         </div>
       </div>
       <div class="album_review-songs">
-        <div v-bind:class="{album_review_song_active : song.id == playeed_id}" class="album_review-song" v-for="song in albumReview_songs" v-on:click="change_music(song.song_url,song.song_name,albumReview_artist_name,song.id,albumReview_img)">
+        <div v-bind:class="{album_review_song_active : song.id == playeed_id}" class="album_review-song" v-for="song in albumReview_songs" v-on:click="change_music(song.song_url,song.song_name,albumReview_artist_name,song.id,albumReview_img,true)">
           <div class="album_review-song-position">
             <span>{{song.id}}</span>
           </div>
