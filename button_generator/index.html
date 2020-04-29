@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Button generator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div id="header"></div>
+    <div id="main">
+      <div class="main-container">
+        <div class="main-container-row">
+          <div class="row-side">
+            <div class="controls-place">
+              <div class="controls-place-name">
+                <span>Change settings</span>
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Class name</span>
+                </div>
+                <input type="text" v-model="btnClassName" class="setting-item-input">
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Button text</span>
+                </div>
+                <input type="text" v-model="btnText" class="setting-item-input">
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Font</span>
+                </div>
+                <input type="text" value="Button text" class="setting-item-input">
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Button size</span>
+                </div>
+                <div class="button-toggle">
+                  <div v-bind:class="{'right-toggle' : btnSize == 'fixed'}" class="button-toggle-toggler"></div>
+                  <div class="button-toggle-items">
+                    <div @click="btnSizeToggle('ftf'), btnFullWidth = false" class="button-toggle-items-item">
+                      <span>fit to text</span>
+                    </div>
+                    <div @click="btnSizeToggle('fixed')" class="button-toggle-items-item">
+                      <span>fixed</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-settings">
+                  <div v-if="btnSize == 'ftf'" class="button-settings-setting">
+                    <div class="button-settings-setting-name">
+                      <span>Vertical padding</span>
+                    </div>
+                    <div class="setting-range-input">
+                      <input v-model="btnVerticalPadding" type="range" min="0" max="50" step="1" class="range-input">
+                      <span>{{btnVerticalPadding}}</span>
+                    </div>
+                    <div class="button-settings-setting-name">
+                      <span>Horizontal padding</span>
+                    </div>
+                    <div class="setting-range-input">
+                      <input v-model="btnHorizontalPadding" type="range" min="0" max="60" step="1" class="range-input">
+                      <span>{{btnHorizontalPadding}}</span>
+                    </div>
+                  </div>
+                  <div v-if="btnSize == 'fixed'" class="button-settings-setting">
+                    <div class="button-settings-setting-name">
+                      <span>Button width</span>
+                    </div>
+                    <div class="setting-range-input">
+                      <input v-model="btnWidth" type="range" min="0" max="200" step="1" class="range-input">
+                      <span>{{btnWidth}}</span>
+                    </div>
+                    <div class="checkbox-setting">
+                      <div class="checkbox-setting-name">
+                        <span>Full width?</span>
+                      </div>
+                      <div class="checkbox-setting-input">
+                        <input type="checkbox" v-model="btnFullWidth">
+                      </div>
+                    </div>
+                    <div class="button-settings-setting-name">
+                      <span>Button height</span>
+                    </div>
+                    <div class="setting-range-input">
+                      <input v-model="btnHeight" type="range" min="0" max="100" step="1" class="range-input">
+                      <span>{{btnHeight}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-side">
+            <div class="btn-place">
+                <div class="btn-place-name">
+                  <span>.{{btnClassName}}</span>
+                </div>
+                <div class="btn-place-btn">
+                  <div id="genBtn" v-bind:class="{ 'ftf' : btnSize == 'ftf', 'fixed' : btnSize == 'fixed', btnBradius :  btnRound, 'btn-full-width' : btnFullWidth }" v-bind:style="{'padding' : btnVerticalPadding + 'px ' + btnHorizontalPadding + 'px', 'width' : btnWidth + 'px', 'height' : btnHeight + 'px', 'border-radius' : btnBrad + 'px', 'background-color' : btnBgColor, 'color' : btnTextColor}">
+                    <span>{{btnText}}</span>
+                  </div>
+                </div>
+            </div>
+            <div class="css-text">
+              <span class="css-text-classname">.{{btnClassName}}</span>
+              <span>{</span>
+                <div class="css-text-code">
+                  <span>background-color: {{btnBgColor}};</span>
+                  <span>color: {{btnTextColor}};</span>
+                  <span v-if="btnSize == 'ftf'">padding: {{btnVerticalPadding}}px {{btnHorizontalPadding}}px;</span>
+                  <div v-if="btnSize == 'fixed'">
+                    <span>display: flex;</span>
+                    <span>justify-content: center;</span>
+                    <span>align-items: center;</span>
+                    <span v-if="btnFullWidth == false">width: {{btnWidth}}px;</span>
+                    <span v-if="btnFullWidth == true">width: 100%;</span>
+                    <span>height: {{btnHeight}}px;</span>
+                  </div>
+                  <span v-if="btnBrad != 0">border-radius: {{btnBrad}}px;</span>
+                </div>
+              <span>}</span>
+            </div>
+          </div>
+          <div class="row-side">
+            <div class="controls-place">
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Border radius</span>
+                </div>
+                <div class="button-toggle">
+                  <div v-bind:class="{'right-toggle' : btnRound}" class="button-toggle-toggler"></div>
+                  <div class="button-toggle-items">
+                    <div @click="btnRound = false, btnBrad = 20" class="button-toggle-items-item">
+                      <span>custom</span>
+                    </div>
+                    <div @click="btnRound = true, btnBrad = 1000" class="button-toggle-items-item">
+                      <span>round</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-settings">
+                  <div v-if="btnRound == false" class="button-settings-setting">
+                    <div class="setting-range-input">
+                      <input v-model="btnBrad" type="range" min="0" max="100" step="1" class="range-input">
+                      <span>{{btnBrad}}</span>
+                    </div>
+                  </div>
+                  <div v-if="btnSize == true" class="button-settings-setting">
+                  </div>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Background color</span>
+                </div>
+                <color-picker v-bind:colors="btnBgColor" active="btnBgColor"></color-picker>
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Text color</span>
+                </div>
+                <color-picker v-bind:colors="btnTextColor" active="btnTextColor"></color-picker>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </div>
+<script src="js/vue.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
