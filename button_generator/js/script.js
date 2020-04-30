@@ -63,7 +63,8 @@ let app = new Vue({
     btnFontItalic: false,
     btnFontUppercase: false,
     btnFontSize: 18,
-    copied: false
+    copied: false,
+    copiedFail: false
   },
   methods: {
     btnSizeToggle: function(toggle)
@@ -87,10 +88,12 @@ let app = new Vue({
     copy: function()
     {
       app.copied = false
+      app.copiedFail = false
       let copied = document.querySelector('#copied-text')
       navigator.clipboard.writeText(copied.textContent).then(function() {
         app.copied = true
       }, function(err) {
+        app.copiedFail = true
         console.error('Async: Could not copy text: ', err);});
     }
   }
