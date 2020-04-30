@@ -148,9 +148,11 @@
               <div @click="copy" class="css-text-copy">
                 <span>copy</span>
               </div>
-              <!-- <div class="css-text-copy-copied">
-                <span>copied!</span>
-              </div> -->
+              <transition name=fading>
+                <div v-if="copied" class="css-text-copy-copied unselectable">
+                  <span>copied!</span>
+                </div>
+              </transition>
               <div id="copied-text">
                 <span class="css-text-classname">.{{btnClassName}}</span>
                 <span>{</span>

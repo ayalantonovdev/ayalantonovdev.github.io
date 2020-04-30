@@ -23,6 +23,15 @@ body
   min-height: calc(100vh - 60px);
   background-color: #142850;
 }
+.unselectable
+{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .main-container
 {
   max-width: 1440px;
@@ -226,19 +235,19 @@ margin-bottom: 5px
   position: absolute;
   opacity: 0;
   right: 15px;
-  top: 50px;
+  top: 60px;
   padding: 5px 10px;
   background-color: #555;
   border-radius: 5px;
-  -webkit-animation: 4s hide;
-  -moz-animation: 4s hide;
-  -o-animation: 4s hide;
-  animation: 4s hide
+  -webkit-animation: 1s hide;
+  -moz-animation: 1s hide;
+  -o-animation: 1s hide;
+  animation: 1s hide
 }
-@-webkit-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
-@-moz-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
-@-o-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
-@keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
+@-webkit-keyframes hide { 0%{ opacity: 0.5;top: 60px; } 50% { opacity: 1;top: 50px; } 100% { opacity: 0;top: 60px;display: none }}
+@-moz-keyframes hide { 0%{ opacity: 0.5;top: 60px; } 50% { opacity: 1;top: 50px; } 100% { opacity: 0;top: 60px;display: none }}
+@-o-keyframes hide { 0%{ opacity: 0.5;top: 60px; } 50% { opacity: 1;top: 50px; } 100% { opacity: 0;top: 60px;display: none }}
+@keyframes hide { 0%{ opacity: 0.5;top: 60px; } 50% { opacity: 1;top: 50px; } 100% { opacity: 0;top: 60px;display: none }}
 .css-text-copy:active
 {
   background-color: #20b96e;
