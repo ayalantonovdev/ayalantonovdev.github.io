@@ -7,6 +7,8 @@
   <title>Button generator</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="app">
@@ -35,7 +37,41 @@
                 <div class="setting-item-name">
                   <span>Font</span>
                 </div>
-                <input type="text" value="Button text" class="setting-item-input">
+                <select class="setting-item-input" v-model="btnFont">
+                  <option value="'Roboto', sans-serif">Roboto</option>
+                  <option value="'Playfair Display', serif">Playfair Display</option>
+                </select>
+                <div class="checkbox-setting">
+                  <div class="checkbox-setting-name">
+                    <span>Bold ?</span>
+                  </div>
+                  <div class="checkbox-setting-input">
+                    <input type="checkbox" v-model="btnFontBold">
+                  </div>
+                </div>
+                <div class="checkbox-setting">
+                  <div class="checkbox-setting-name">
+                    <span>Italic ?</span>
+                  </div>
+                  <div class="checkbox-setting-input">
+                    <input type="checkbox" v-model="btnFontItalic">
+                  </div>
+                </div>
+                <div class="checkbox-setting">
+                  <div class="checkbox-setting-name">
+                    <span>Uppercase ?</span>
+                  </div>
+                  <div class="checkbox-setting-input">
+                    <input type="checkbox" v-model="btnFontUppercase">
+                  </div>
+                </div>
+                <div class="button-settings-setting-name">
+                  <span>Font size</span>
+                </div>
+                <div class="setting-range-input">
+                  <input v-model="btnFontSize" type="range" min="4" max="60" step="1" class="range-input">
+                  <span>{{btnFontSize}}</span>
+                </div>
               </div>
               <div class="setting-item">
                 <div class="setting-item-name">
@@ -103,29 +139,43 @@
                   <span>.{{btnClassName}}</span>
                 </div>
                 <div class="btn-place-btn">
-                  <div id="genBtn" v-bind:class="{ 'ftf' : btnSize == 'ftf', 'fixed' : btnSize == 'fixed', btnBradius :  btnRound, 'btn-full-width' : btnFullWidth }" v-bind:style="{'padding' : btnVerticalPadding + 'px ' + btnHorizontalPadding + 'px', 'width' : btnWidth + 'px', 'height' : btnHeight + 'px', 'border-radius' : btnBrad + 'px', 'background-color' : btnBgColor, 'color' : btnTextColor}">
+                  <div id="genBtn" v-bind:class="{ 'ftf' : btnSize == 'ftf', 'fixed' : btnSize == 'fixed', btnBradius :  btnRound, 'btn-full-width' : btnFullWidth, 'italic' : btnFontItalic, 'bold' : btnFontBold, 'uppercase' : btnFontUppercase }" v-bind:style="{'font-family' : btnFont,'padding' : btnVerticalPadding + 'px ' + btnHorizontalPadding + 'px', 'width' : btnWidth + 'px', 'height' : btnHeight + 'px', 'border-radius' : btnBrad + 'px', 'background-color' : btnBgColor, 'color' : btnTextColor, 'font-size' : btnFontSize + 'px', 'border' : 'solid ' + btnBorderSize + 'px ' + btnBorderColor}">
                     <span>{{btnText}}</span>
                   </div>
                 </div>
             </div>
-            <div class="css-text">
-              <span class="css-text-classname">.{{btnClassName}}</span>
-              <span>{</span>
-                <div class="css-text-code">
-                  <span>background-color: {{btnBgColor}};</span>
-                  <span>color: {{btnTextColor}};</span>
-                  <span v-if="btnSize == 'ftf'">padding: {{btnVerticalPadding}}px {{btnHorizontalPadding}}px;</span>
-                  <div v-if="btnSize == 'fixed'">
-                    <span>display: flex;</span>
-                    <span>justify-content: center;</span>
-                    <span>align-items: center;</span>
-                    <span v-if="btnFullWidth == false">width: {{btnWidth}}px;</span>
-                    <span v-if="btnFullWidth == true">width: 100%;</span>
-                    <span>height: {{btnHeight}}px;</span>
+            <div id="css-text" class="css-text">
+              <div @click="copy" class="css-text-copy">
+                <span>copy</span>
+              </div>
+              <!-- <div class="css-text-copy-copied">
+                <span>copied!</span>
+              </div> -->
+              <div id="copied-text">
+                <span class="css-text-classname">.{{btnClassName}}</span>
+                <span>{</span>
+                  <div class="css-text-code">
+                    <span>background-color: {{btnBgColor}};</span>
+                    <span>color: {{btnTextColor}};</span>
+                    <span>font-family: {{btnFont}};</span>
+                    <span v-if="btnFontBold">font-weight: 700;</span>
+                    <span v-if="btnFontItalic">font-style: italic;</span>
+                    <span v-if="btnFontUppercase">text-transform: uppercase;</span>
+                    <span>font-size: {{btnFontSize}}px;</span>
+                    <span v-if="btnSize == 'ftf'">padding: {{btnVerticalPadding}}px {{btnHorizontalPadding}}px;</span>
+                    <div v-if="btnSize == 'fixed'">
+                      <span>display: flex;</span>
+                      <span>justify-content: center;</span>
+                      <span>align-items: center;</span>
+                      <span v-if="btnFullWidth == false">width: {{btnWidth}}px;</span>
+                      <span v-if="btnFullWidth == true">width: 100%;</span>
+                      <span>height: {{btnHeight}}px;</span>
+                    </div>
+                    <span v-if="btnBrad != 0">border-radius: {{btnBrad}}px;</span>
+                    <span v-if="btnBorder">border: solid {{btnBorderSize}}px {{btnBorderColor}};</span>
                   </div>
-                  <span v-if="btnBrad != 0">border-radius: {{btnBrad}}px;</span>
-                </div>
-              <span>}</span>
+                <span>}</span>
+              </div>
             </div>
           </div>
           <div class="row-side">
@@ -153,6 +203,39 @@
                     </div>
                   </div>
                   <div v-if="btnSize == true" class="button-settings-setting">
+                  </div>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div class="setting-item-name">
+                  <span>Border</span>
+                </div>
+                <div class="button-toggle">
+                  <div v-bind:class="{'right-toggle' : !btnBorder}" class="button-toggle-toggler"></div>
+                  <div class="button-toggle-items">
+                    <div @click="btnBorder = true, btnBorderSize = 1" class="button-toggle-items-item">
+                      <span>custom</span>
+                    </div>
+                    <div @click="btnBorder = false, btnBorderSize = 0" class="button-toggle-items-item">
+                      <span>none</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-settings">
+                  <div v-if="btnBorder == true" class="button-settings-setting">
+                    <div class="button-settings-setting-name">
+                      <span>Border color</span>
+                    </div>
+                    <color-picker v-bind:colors="btnBorderColor" active="btnBorderColor"></color-picker>
+                    <div class="button-settings-setting-name">
+                      <span>Border width</span>
+                    </div>
+                    <div class="setting-range-input">
+                      <input v-model="btnBorderSize" type="range" min="1" max="15" step="1" class="range-input">
+                      <span>{{btnBorderSize}}</span>
+                    </div>
+                  </div>
+                  <div v-if="btnBorder == false" class="button-settings-setting">
                   </div>
                 </div>
               </div>

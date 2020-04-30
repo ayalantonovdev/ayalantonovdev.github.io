@@ -3,7 +3,7 @@ Vue.component('color-picker',{
   data: function()
   {
     return {
-      mainColors: ['#15E67F','#E3DE8C','#D8A076','#D83762','#76B6D8','#1C7A90','#249CB8','#FBD75B','#FFFFFF','#000000','#202020'],
+      mainColors: ['#15E67F','#E3DE8C','#D8A076','#D83762','#76B6D8','#1C7A90','#249CB8','#FBD75B','#F8F3EB','#C3EBEA','#FC7E2F','#F40552','#FFFFFF','#000000'],
       opened: false,
       activeColor: this.colors
     }
@@ -18,6 +18,9 @@ Vue.component('color-picker',{
           case "btnTextColor":
             app.btnTextColor = color
           break;
+          case "btnBorderColor":
+            app.btnBorderColor = color
+          break;
         }
         this.activeColor = color
     }
@@ -28,7 +31,7 @@ Vue.component('color-picker',{
     <div @click="opened = !opened" v-bind:style="{'background-color' : colors}" class="color-picker-btn"></div>
       <div v-if="opened" class="color-picker-window">
         <div class="color-picker-colors">
-          <div v-for="mainColor in mainColors" @click="change_color(mainColor)" v-bind:class="{'color-picker-window-color-active' : activeColor == mainColor}" v-bind:style="{'background-color' : mainColor}" class="color-picker-window-color"></div>
+          <div v-for="mainColor in mainColors" @click="change_color(mainColor), opened = false" v-bind:class="{'color-picker-window-color-active' : activeColor == mainColor}" v-bind:style="{'background-color' : mainColor}" class="color-picker-window-color"></div>
         </div>
         <input type="text" @change="change_color(activeColor)" v-model="activeColor" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$">
       </div>
@@ -49,9 +52,17 @@ let app = new Vue({
     btnWidth: 150,
     btnHeight: 80,
     btnBrad: 20,
+    btnBorder: false,
+    btnBorderSize: 0,
+    btnBorderColor: '#FBD75B',
     btnRound: false,
     btnBgColor: '#15E67F',
-    btnTextColor: '#FFFFFF'
+    btnTextColor: '#FFFFFF',
+    btnFont: "'Roboto', sans-serif",
+    btnFontBold: false,
+    btnFontItalic: false,
+    btnFontUppercase: false,
+    btnFontSize: 18
   },
   methods: {
     btnSizeToggle: function(toggle)
@@ -71,6 +82,14 @@ let app = new Vue({
         this.btnHeight = 0
         break;
       }
+    },
+    copy: function()
+    {
+      let copied = document.querySelector('#copied-text')
+      navigator.clipboard.writeText(copied.textContent).then(function() {
+
+      }, function(err) {
+        console.error('Async: Could not copy text: ', err);});
     }
   }
 })

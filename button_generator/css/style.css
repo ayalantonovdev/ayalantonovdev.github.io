@@ -34,12 +34,21 @@ body
   display: flex;
   flex-wrap: wrap;
 }
+.row-side:nth-child(2)
+{
+  flex: 1 400px;
+  margin: 15px;
+}
 .row-side
 {
   flex: 1 200px;
   margin: 15px;
 }
-
+.row-side
+{
+  flex: 1 200px;
+  margin: 15px;
+}
 .controls-place
 {
   padding: 15px;
@@ -120,6 +129,10 @@ margin-bottom: 5px
 {
   margin-top: 15px;
 }
+.button-settings-setting-name
+{
+  margin-top: 10px;
+}
 .button-settings-setting-name span
 {
   color: #999;
@@ -188,6 +201,7 @@ margin-bottom: 5px
 
 .css-text
 {
+  position: relative;
   margin-top: 15px;
   background-color: #4c4c4c;
   width: 100%;
@@ -196,6 +210,45 @@ margin-bottom: 5px
   color: #fff;
   font-family: 'Source Code Pro', monospace;
 }
+.css-text-copy
+{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 5px 10px;
+  background-color: #15E67F;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700
+}
+.css-text-copy-copied
+{
+  position: absolute;
+  opacity: 0;
+  right: 15px;
+  top: 50px;
+  padding: 5px 10px;
+  background-color: #555;
+  border-radius: 5px;
+  -webkit-animation: 4s hide;
+  -moz-animation: 4s hide;
+  -o-animation: 4s hide;
+  animation: 4s hide
+}
+@-webkit-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
+@-moz-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
+@-o-keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
+@keyframes hide { from{ opacity: 1 } to { opacity: 0 } }
+.css-text-copy:active
+{
+  background-color: #20b96e;
+}
+.css-text-import
+{
+  width: calc(100% - 100px);
+  overflow-wrap: break-word;
+}
+
 .css-text-code
 {
   margin-left: 15px;
@@ -233,17 +286,19 @@ margin-bottom: 5px
   width: 50px;
   height: 25px;
   cursor: pointer;
-  border: solid 2px #202020;
+  border-radius: 5px;
+  border: solid 2px #142850;
 }
 .color-picker-window
 {
   position: absolute;
-  top: 105%;
+  top: 115%;
   left: 0;
   width: 150px;
   background-color: #fff;
   padding: 15px;
   z-index: 99;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .color-picker-window input
@@ -264,7 +319,7 @@ margin-bottom: 5px
 }
 .color-picker-window-color-active
 {
-  border: solid 1px #fff
+  border: solid 3px #fff
 }
 .color-picker-window-color:hover
 {
@@ -291,7 +346,7 @@ margin-bottom: 5px
 
 #genBtn
 {
-  font-weight: 900;
+  font-weight: 400;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -303,10 +358,21 @@ margin-bottom: 5px
 {
   width: 100% !important
 }
+.italic
+{
+  font-style: italic;
+}
+.bold
+{
+  font-weight: 700 !important
+}
+.uppercase
+{
+  text-transform: uppercase;
+}
 #genBtn span
 {
-  font-weight: 700;
-  font-size: 18px;
+
 }
 
 
