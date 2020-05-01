@@ -1,3 +1,4 @@
+document.body.style = "overflow: hidden";
 Vue.component('color-picker',{
   props: ['colors','active'],
   data: function()
@@ -43,6 +44,8 @@ Vue.component('color-picker',{
 let app = new Vue({
   el: "#app",
   data: {
+    pageLoader: true,
+    pageIsLoad: false,
     btnClassName: 'myFirstGenBtn',
     btnText: 'Button text',
     btnSize: 'ftf',
@@ -62,9 +65,7 @@ let app = new Vue({
     btnFontBold: false,
     btnFontItalic: false,
     btnFontUppercase: false,
-    btnFontSize: 18,
-    copied: false,
-    copiedFail: false
+    btnFontSize: 18
   },
   methods: {
     btnSizeToggle: function(toggle)
@@ -84,17 +85,9 @@ let app = new Vue({
         this.btnHeight = 0
         break;
       }
-    },
-    copy: function()
-    {
-      app.copied = false
-      app.copiedFail = false
-      let copied = document.querySelector('#copied-text')
-      navigator.clipboard.writeText(copied.textContent).then(function() {
-        app.copied = true
-      }, function(err) {
-        app.copiedFail = true
-        console.error('Async: Could not copy text: ', err);});
     }
+  },
+  mounted: function() {
+    setTimeout(function(){app.pageIsLoad = true; document.body.style = "overflow: auto"; window.scrollTo(pageXOffset, 0); setInterval(function(){app.pageLoader = false},2000)}, 1000)
   }
 })

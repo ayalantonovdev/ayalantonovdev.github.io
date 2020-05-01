@@ -12,7 +12,73 @@
 </head>
 <body>
   <div id="app">
-    <div id="header"></div>
+          <div v-if="pageLoader" v-bind:class="{'is_load' : pageIsLoad}" id="loader">
+            <div class="main-container">
+              <div class="main-container-row" style="margin-top: 60px">
+                <div class="row-side">
+                  <div class="controls-place">
+                    <div class="controls-place-name" style="height: 24px;background-color: #ddd; border-radius: 5px; width: 50% "></div>
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 35px"></div>
+                    </div>
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 35px"></div>
+                    </div>
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 35px"></div>
+                      <div class="checkbox-setting" style="height: 80px;background-color: #eee; border-radius: 5px"></div>
+                      <div class="button-settings-setting-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 20px"></div>
+                    </div>
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 24px"></div>
+                      <div class="button-settings">
+                          <div class="button-settings-setting-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                          <div class="setting-item-input" style="height: 20px"></div>
+                          <div class="button-settings-setting-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                          <div class="setting-item-input" style="height: 20px"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-side">
+                  <div class="btn-place">
+                      <div class="btn-place-name" style="height: 20px;background-color: #ddd; border-radius: 5px; width: 30% "></div>
+                      <div class="btn-place-btn">
+                        <div style="height:62px; width: 167px; background-color: #15e67f; border-radius: 20px"></div>
+                      </div>
+                  </div>
+                  <div class="css-text" style="background-color: #4c4c4c">
+                    <div class="btn-place-name" style="height: 20px;background-color: #ffb100; border-radius: 5px; width: 40% "></div>
+                    <div class="btn-place-name" style="height: 150px;background-color: #676767; border-radius: 5px; margin-top: 15px;"></div>
+                  </div>
+                </div>
+                <div class="row-side">
+                  <div class="controls-place">
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 24px"></div>
+                      <div class="setting-item-input" style="height: 20px;margin-top: 15px"></div>
+                    </div>
+                    <div class="setting-item">
+                      <div class="setting-item-name" style="height: 20px;background-color: #eee; border-radius: 5px; width: 30% "></div>
+                      <div class="setting-item-input" style="height: 24px"></div>
+                    </div>
+                    <div class="setting-item-input" style="height: 130px"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <div id="header">
+      <div class="header-logo">
+        <span>Simple button generator</span>
+      </div>
+    </div>
     <div id="main">
       <div class="main-container">
         <div class="main-container-row">
@@ -70,7 +136,7 @@
                 </div>
                 <div class="setting-range-input">
                   <input v-model="btnFontSize" type="range" min="4" max="60" step="1" class="range-input">
-                  <span>{{btnFontSize}}</span>
+                  <span>{{btnFontSize}}px</span>
                 </div>
               </div>
               <div class="setting-item">
@@ -95,14 +161,14 @@
                     </div>
                     <div class="setting-range-input">
                       <input v-model="btnVerticalPadding" type="range" min="0" max="50" step="1" class="range-input">
-                      <span>{{btnVerticalPadding}}</span>
+                      <span>{{btnVerticalPadding}}px</span>
                     </div>
                     <div class="button-settings-setting-name">
                       <span>Horizontal padding</span>
                     </div>
                     <div class="setting-range-input">
                       <input v-model="btnHorizontalPadding" type="range" min="0" max="60" step="1" class="range-input">
-                      <span>{{btnHorizontalPadding}}</span>
+                      <span>{{btnHorizontalPadding}}px</span>
                     </div>
                   </div>
                   <div v-if="btnSize == 'fixed'" class="button-settings-setting">
@@ -111,7 +177,7 @@
                     </div>
                     <div class="setting-range-input">
                       <input v-model="btnWidth" type="range" min="0" max="200" step="1" class="range-input">
-                      <span>{{btnWidth}}</span>
+                      <span>{{btnWidth}}px</span>
                     </div>
                     <div class="checkbox-setting">
                       <div class="checkbox-setting-name">
@@ -126,7 +192,7 @@
                     </div>
                     <div class="setting-range-input">
                       <input v-model="btnHeight" type="range" min="0" max="100" step="1" class="range-input">
-                      <span>{{btnHeight}}</span>
+                      <span>{{btnHeight}}px</span>
                     </div>
                   </div>
                 </div>
@@ -145,15 +211,6 @@
                 </div>
             </div>
             <div id="css-text" class="css-text">
-              <div @click="copy" class="css-text-copy">
-                <span>copy</span>
-              </div>
-                <div v-if="copied" class="css-text-copy-copied unselectable">
-                  <span>copied!</span>
-                </div>
-                <div v-if="copiedFail" class="css-text-copy-copied unselectable">
-                  <span>copied fail!</span>
-                </div>
               <div id="copied-text">
                 <span class="css-text-classname">.{{btnClassName}}</span>
                 <span>{</span>
@@ -202,7 +259,7 @@
                   <div v-if="btnRound == false" class="button-settings-setting">
                     <div class="setting-range-input">
                       <input v-model="btnBrad" type="range" min="0" max="100" step="1" class="range-input">
-                      <span>{{btnBrad}}</span>
+                      <span>{{btnBrad}}px</span>
                     </div>
                   </div>
                   <div v-if="btnSize == true" class="button-settings-setting">
@@ -235,7 +292,7 @@
                     </div>
                     <div class="setting-range-input">
                       <input v-model="btnBorderSize" type="range" min="1" max="15" step="1" class="range-input">
-                      <span>{{btnBorderSize}}</span>
+                      <span>{{btnBorderSize}}px</span>
                     </div>
                   </div>
                   <div v-if="btnBorder == false" class="button-settings-setting">
@@ -259,7 +316,11 @@
         </div>
       </div>
     </div>
-    <div id="footer"></div>
+    <div id="footer">
+      <div class="footer-text">
+        <a target="_blank" href="https://github.com/ayalantonovdev/ayalantonovdev.github.io">@ayalantonovdev</a>
+      </div>
+    </div>
   </div>
 <script src="js/vue.js"></script>
 <script src="js/script.js"></script>
