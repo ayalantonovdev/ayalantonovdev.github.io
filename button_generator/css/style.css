@@ -321,6 +321,45 @@ margin-bottom: 5px
   width: 50px;
   height: 25px;
 }
+.invalid-color
+{
+  -webkit-animation: errorMove .5s ease;
+  -moz-animation: errorMove .5s ease;
+  -o-animation: errorMove .5s ease;
+  animation: errorMove .5s ease;
+}
+-webkit-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+-moz-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+-o-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
 .color-picker-wrap
 {
   display: flex;
@@ -352,12 +391,15 @@ margin-bottom: 5px
   padding: 15px;
   z-index: 99;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(221,221,221,0.5);
 }
 .color-picker-window input
 {
   width: 100%;
   border: none;
+  border-radius: 5px;
+  background-color: #eaeaea;
+  padding: 5px 10px;
   margin-top: 15px;
 }
 .color-picker-colors
@@ -378,6 +420,7 @@ margin-bottom: 5px
 {
   border: solid 1px #fff
 }
+
 
 .checkbox-setting
 {

@@ -6,7 +6,8 @@ Vue.component('color-picker',{
     return {
       mainColors: ['#15E67F','#E3DE8C','#D8A076','#D83762','#76B6D8','#1C7A90','#249CB8','#FBD75B','#F8F3EB','#C3EBEA','#FC7E2F','#F40552','#FFFFFF','#000000'],
       opened: false,
-      activeColor: this.colors
+      activeColor: this.colors,
+      invalidColor: false
     }
   },
   methods:{
@@ -24,6 +25,20 @@ Vue.component('color-picker',{
           break;
         }
         this.activeColor = color
+    },
+    validate_color: function(color)
+    {
+      let reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/igm
+      if(reg.test(color))
+      {
+        this.change_color(color)
+        this.opened = false
+        this.invalidColor = false
+      }
+      else {
+        this.invalidColor = true
+        setTimeout(() => {this.invalidColor = false}, 500)
+      }
     }
   },
   template: `
@@ -32,9 +47,9 @@ Vue.component('color-picker',{
     <div @click="opened = !opened" v-bind:style="{'background-color' : colors}" class="color-picker-btn"></div>
       <div v-if="opened" class="color-picker-window">
         <div class="color-picker-colors">
-          <div v-for="mainColor in mainColors" @click="change_color(mainColor), opened = false" v-bind:class="{'color-picker-window-color-active' : activeColor == mainColor}" v-bind:style="{'background-color' : mainColor}" class="color-picker-window-color"></div>
+          <div v-for="mainColor in mainColors" @click="change_color(mainColor),opened = false, invalidColor = false" v-bind:class="{'color-picker-window-color-active' : activeColor == mainColor}" v-bind:style="{'background-color' : mainColor}" class="color-picker-window-color"></div>
         </div>
-        <input type="text" @change="change_color(activeColor)" v-model="activeColor" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$">
+        <input type="text" @change="validate_color(activeColor)" v-model="activeColor" v-bind:class="{'invalid-color' : invalidColor}">
       </div>
   </div>
   <span>{{colors}}</span>
@@ -89,5 +104,8 @@ let app = new Vue({
   },
   mounted: function() {
     setTimeout(function(){app.pageIsLoad = true; document.body.style = "overflow: auto"; window.scrollTo(pageXOffset, 0); setInterval(function(){app.pageLoader = false},2000)}, 1500)
+  },
+  updated: function(){
+
   }
 })
