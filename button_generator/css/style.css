@@ -17,12 +17,31 @@ body
   width: 100%;
   height: 100vh;
   z-index: 999;
-  transition: all .2s;
+  transition: opacity .4s;
 }
 .is_load
 {
   opacity: 0;
   z-index: 0 !important;
+}
+.loader-animation
+{
+  animation: blind 0.8s infinite;
+  -webkit-animation: blind 0.8s infinite;
+  -moz-animation: blind 0.8s infinite;
+  -o-animation: blind 0.8s infinite;
+}
+@keyframes blind {
+  0%{background-color: #fff} 50%{background-color: #f9f9f9} 100%{background-color: #fff}
+}
+@-webkit-keyframes blind {
+  0%{background-color: #fff} 50%{background-color: #f9f9f9} 100%{background-color: #fff}
+}
+@-moz-keyframes blind {
+  0%{background-color: #fff} 50%{background-color: #f9f9f9} 100%{background-color: #fff}
+}
+@-o-keyframes blind {
+  0%{background-color: #fff} 50%{background-color: #f9f9f9} 100%{background-color: #fff}
 }
 #header
 {
@@ -45,7 +64,7 @@ body
 {
   width: 100%;
   min-height: calc(100vh - 60px);
-  background-color: #142850;
+  background-color: #ddd;
 }
 .unselectable
 {
@@ -419,7 +438,7 @@ margin-bottom: 5px
   align-items: center;
   width: 100%;
   height: 60px;
-  background-color: #27496d;
+  background-color: #142850;
 }
 .footer-text
 {

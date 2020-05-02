@@ -88,6 +88,6 @@ let app = new Vue({
     }
   },
   mounted: function() {
-    setTimeout(function(){app.pageIsLoad = true; document.body.style = "overflow: auto"; window.scrollTo(pageXOffset, 0); setInterval(function(){app.pageLoader = false},2000)}, 1000)
+    setTimeout(function(){app.pageIsLoad = true; document.body.style = "overflow: auto"; window.scrollTo(pageXOffset, 0); setInterval(function(){app.pageLoader = false},2000)}, 1500)
   }
 })
