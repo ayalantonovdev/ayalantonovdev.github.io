@@ -4,7 +4,21 @@ Vue.component('color-picker',{
   data: function()
   {
     return {
-      mainColors: ['#15E67F','#E3DE8C','#D8A076','#D83762','#76B6D8','#1C7A90','#249CB8','#FBD75B','#F8F3EB','#C3EBEA','#FC7E2F','#F40552','#FFFFFF','#000000'],
+      // mainColors: ['#15E67F','#E3DE8C','#D8A076','#D83762','#76B6D8','#1C7A90','#249CB8','#FBD75B','#F8F3EB','#C3EBEA','#FC7E2F','#F40552','#FFFFFF','#000000'],
+      mainColors:
+          ["#15E67F","#A7DBD8","#E0E4CC","#F38630","#FA6900",
+      		"#FE4365","#FC9D9A","#F9CDAD","#C8C8A9","#83AF9B",
+      		"#ECD078","#D95B43","#C02942","#542437","#53777A",
+      		"#556270","#4ECDC4","#C7F464","#FF6B6B","#C44D58",
+      		"#774F38","#E08E79","#F1D4AF","#ECE5CE","#C5E0DC",
+      		"#E8DDCB","#CDB380","#036564","#033649","#031634",
+      		"#490A3D","#BD1550","#E97F02","#F8CA00","#8A9B0F",
+      		"#594F4F","#547980","#45ADA8","#9DE0AD","#E5FCC2",
+      		"#00A0B0","#6A4A3C","#CC333F","#EB6841","#EDC951",
+      		"#E94E77","#D68189","#C6A49A","#C6E5D9","#F4EAD5",
+      		"#D9CEB2","#948C75","#D5DED9","#7A6A53","#99B2B7",
+      		"#FFFFFF","#CBE86B","#F2E9E1","#1C140D","#CBE86B",
+      		"#EFFFCD","#DCE9BE","#555152","#2E2633"],
       opened: false,
       activeColor: this.colors,
       invalidColor: false
@@ -31,7 +45,7 @@ Vue.component('color-picker',{
       let reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/igm
       if(reg.test(color))
       {
-        this.change_color(color)
+        this.change_color(color.toUpperCase())
         this.opened = false
         this.invalidColor = false
       }
@@ -72,7 +86,7 @@ let app = new Vue({
     btnBrad: 20,
     btnBorder: false,
     btnBorderSize: 0,
-    btnBorderColor: '#FBD75B',
+    btnBorderColor: '#9DE0AD',
     btnRound: false,
     btnBgColor: '#15E67F',
     btnTextColor: '#FFFFFF',
