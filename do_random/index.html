@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Самоизоляция</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="header"></div>
+    <div id="main">
+      <div class="main-container">
+        <div class="main-container-row">
+          <div class="card">
+            <div class="main-card">
+              <div class="card-name">
+                <span>Совет дня</span>
+              </div>
+              <div class="card-action">
+                <span>{{whatDo.text}} {{howLong.text}} {{where.text}}</span>
+              </div>
+              <div class="card-emoji">
+                <span>{{whatDo.emoji}}{{howLong.emoji}}{{where.emoji}}</span>
+              </div>
+            </div>
+            <div class="card-buttons unselectable">
+              <div @click="updating" class="card-buttons-button button-update">
+                <span>Обновить</span>
+              </div>
+              <div class="card-buttons-button button-share">
+                <span>Репост</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </div>
+  <script src="js/vue.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
