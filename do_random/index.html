@@ -9,37 +9,115 @@
 </head>
 <body>
   <div id="app">
-    <div id="header"></div>
+    <!-- <div id="loader">
+
+    </div> -->
+    <div id="header">
+
+    </div>
     <div id="main">
       <div class="main-container">
         <div class="main-container-row">
-          <div class="card">
+          <div v-if="!canEdit" class="card">
             <div class="main-card">
+              <div v-if="cardLoader" class="main-card-loader">
+
+              </div>
               <div class="card-name">
-                <span>Совет дня</span>
+                <span>Совет от {{cardName}}</span>
               </div>
               <div class="card-action">
-                <span>{{whatDo.text}} {{howLong.text}} {{where.text}}</span>
+                <span>{{whatDo.text}} {{where.text}} {{howLong.text}}</span>
               </div>
               <div class="card-emoji">
-                <span>{{whatDo.emoji}}{{howLong.emoji}}{{where.emoji}}</span>
+                <span>{{whatDo.emoji}}{{where.emoji}}{{howLong.emoji}}</span>
               </div>
             </div>
             <div class="card-buttons unselectable">
-              <div @click="updating" class="card-buttons-button button-update">
+              <div v-if="cardLoader" class="button-loader"></div>
+              <button :disabled="cardLoader" @click="updating" class="card-buttons-button button-update">
                 <span>Обновить</span>
-              </div>
-              <div class="card-buttons-button button-share">
-                <span>Репост</span>
+              </button>
+              <button v-if="!userAuth" @click="sign = !sign" class="card-buttons-button button-share">
+                <span>Do it!</span>
+              </button>
+              <button v-if="userAuth" @click="userProfile = !userProfile" class="card-buttons-button button-share">
+                <span>мой профиль</span>
+              </button>
+            </div>
+          </div>
+          <div v-if="sign" class="sign" v-bind:class="{'z-index-max' : sign}">
+            <div class="sign-wrap">
+              <div class="sign-card">
+                <div @click="sign = false" class="sign-close">
+                  <span>закрыть</span>
+                </div>
+                <div v-if="loader" class="sign-loader">
+                  <div class="loader-spiner"></div>
+                </div>
+                <toggleui first="Войти" second="Регистрация" data="signupSignin"></toggleUI>
+                  <div v-if="signupSignin" class="signup-card">
+                    <div class="signupSignin-input">
+                      <input v-model="signinEmail" @change="error = ''" type="email" placeholder="email">
+                    </div>
+                    <div class="signupSignin-input">
+                      <input v-model="signinPassword" @change="error = ''" type="password" placeholder="Пароль">
+                    </div>
+                    <div v-if="error != ''" class="error">
+                      <span>{{error}}</span>
+                    </div>
+                    <button @click="signin(signinEmail,signinPassword)" class="card-buttons-button button-sign">
+                      <span>Войти</span>
+                    </button>
+                  </div>
+                  <div v-if="!signupSignin" class="signup-card">
+                    <div class="signupSignin-input" v-bind:class="{'invalid-input' : invalidEmail}">
+                      <input v-model="userEmail" @change="email_validate(userEmail)" type="email" placeholder="email">
+                    </div>
+                    <div class="signupSignin-input" v-bind:class="{'invalid-input' : invalidName}">
+                      <input type="text" v-model="userName" @change="name_validate(userName)" placeholder="Ваше имя">
+                    </div>
+                    <div class="signupSignin-input" v-bind:class="{'invalid-input' : invalidPassword}">
+                      <input v-model="userPassword" @change="password_validate(userPassword)" type="password" placeholder="Пароль">
+                    </div>
+                    <div v-if="error != ''" class="error">
+                      <span>{{error}}</span>
+                    </div>
+                    <button :disabled="!allValid" @click="signup()" class="card-buttons-button button-sign">
+                      <span>Регистрация</span>
+                    </button>
+                  </div>
               </div>
             </div>
           </div>
+          <div v-if="userProfile" class="user-profile">{{userName}} <button @click="logout()">logout</button></div>
         </div>
       </div>
     </div>
     <div id="footer"></div>
   </div>
-  <script src="js/vue.js"></script>
-  <script src="js/script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+<script src = "https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js" > </script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDMxs4vPrkl0_OCZyZ8eThjCItvVqMc7A8",
+    authDomain: "dorandom-2ea2c.firebaseapp.com",
+    databaseURL: "https://dorandom-2ea2c.firebaseio.com",
+    projectId: "dorandom-2ea2c",
+    storageBucket: "dorandom-2ea2c.appspot.com",
+    messagingSenderId: "135277180695",
+    appId: "1:135277180695:web:565964d1ab9e3ba9186952",
+    measurementId: "G-SFL63HBMY4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="js/vue.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

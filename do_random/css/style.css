@@ -22,6 +22,16 @@
   height: 50px;
   background-color: #ddd;
 }
+#loader
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 99999;
+}
 .unselectable
 {
   -webkit-touch-callout: none;
@@ -47,12 +57,47 @@
 }
 .main-card
 {
+  position: relative;
   padding: 15px;
-  min-width: 150px;
+  width: 450px;
   min-height: 60px;
   border-radius: 3px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
+}
+.main-card-loader
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 999;
+  -webkit-animation: blind 1s infinite ease;
+  -moz-animation: blind 1s infinite ease;
+  -o-animation: blind 1s infinite ease;
+  animation: blind 1s infinite ease;
+}
+-webkit-@keyframes blind {
+  0% {background-color: #fff}
+  50% {background-color: #f5f5f5}
+  100% {background-color: #fff}
+}
+-moz-@keyframes blind {
+  0% {background-color: #fff}
+  50% {background-color: #f5f5f5}
+  100% {background-color: #fff}
+}
+-o-@keyframes blind {
+  0% {background-color: #fff}
+  50% {background-color: #f5f5f5}
+  100% {background-color: #fff}
+}
+@keyframes blind {
+  0% {background-color: #fff}
+  50% {background-color: #f5f5f5}
+  100% {background-color: #fff}
 }
 .card-name
 {
@@ -77,20 +122,42 @@
 }
 .card-buttons
 {
+  position: relative;
   display: flex;
   margin-top: 15px;
+}
+.button-loader
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+  border: solid 1px #dbdbdb;
+  -webkit-animation: blind 1s infinite ease;
+  -moz-animation: blind 1s infinite ease;
+  -o-animation: blind 1s infinite ease;
+  animation: blind 1s infinite ease;
 }
 .card-buttons-button
 {
   flex: 1;
+  margin: 0 5px;
   display: flex;
+  border: none;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 30px;
   border-radius: 4px;
   color: #fff;
   font-weight: 700;
   cursor: pointer;
+}
+.card-buttons-button:disabled
+{
+  background-color: #cccccc;
 }
 .button-update
 {
@@ -100,7 +167,230 @@
 {
   background-color: #0095f6
 }
-.card-buttons-button:first-child
+.button-sign
 {
-  margin-right: 15px;
+  background-color: #0095f6;
+  width: 100%;
+  margin: 0;
+}
+
+
+.sign
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fafafa;
+  width: 100%;
+  height: 100%;
+  z-index: -1
+}
+.z-index-max
+{
+  z-index: 999;
+}
+.sign-wrap
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 15px;
+}
+.sign-card
+{
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border: solid 1px #dbdbdb;
+  border-radius: 4px;
+  padding: 15px;
+  position: relative;
+}
+.signup-card
+{
+  margin-top: 15px;
+}
+.signupSignin-input
+{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.sign-close
+{
+  position: absolute;
+  top: -50px;
+  right: 0px;
+  padding: 5px 10px;
+  background-color: #e91e63;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sign-close span
+{
+  font-size: 12px;
+  color: #fff
+}
+.error
+{
+  text-align: center;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #ff0033;
+}
+.error span
+{
+  font-weight: 700;
+  color: #fff
+}
+.signupSignin-input input
+{
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  background-color: #fbfbfb;
+  padding: 10px;
+  border: solid 1px #dbdbdb;
+}
+.invalid-input
+{
+  -webkit-animation: errorMove .5s ease;
+  -moz-animation: errorMove .5s ease;
+  -o-animation: errorMove .5s ease;
+  animation: errorMove .5s ease;
+  border: solid 1px red;
+  border-radius: 4px
+}
+-webkit-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+-moz-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+-o-@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+@keyframes errorMove {
+  0% {transform: translate(0px,0px);}
+  20% {transform: translate(10px,0px);}
+  40% {transform: translate(-10px,0px);}
+  60% {transform: translate(4px,0px);}
+  80% {transform: translate(-4px,0px);}
+  100% {transform: translate(0px,0px);}
+}
+.sign-loader
+{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+.loader-spiner
+{
+  width: 50px;
+  height: 50px;
+  background-color: #666;
+  -webkit-animation: spin 1s  infinite ease;
+  -moz-animation: spin 1s  infinite ease;
+  -o-animation: spin 1s  infinite ease;
+  animation: spin 1s infinite ease;
+}
+-webkit-@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+-moz-@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+-o-@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+.button-toggle
+{
+  position: relative;
+  width: 100%;
+  height: 25px;
+  background-color: #3F51B5;
+  border: 5px;
+  border-radius: 5px;
+}
+.button-toggle-toggler
+{
+  position: absolute;
+  width: calc(50% - 4px);
+  height: 21px;
+  margin: 0 2px;
+  top: 2px;
+  left: 0; /* 50% при переходе */
+  background-color: #2196F3;
+  border-radius: 5px;
+  transition: left 200ms ease
+}
+.right-toggle
+{
+  left: 50%;
+}
+.button-toggle-items
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  z-index: 99;
+}
+.button-toggle-items-item
+{
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.button-toggle-items-item span
+{
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px
+}
+
+@media (max-width: 575.98px) {
+  .card
+  {
+    width: 100%;
+  }
+  .main-card
+  {
+    width: 100%;
+  }
 }
